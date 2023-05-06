@@ -1,0 +1,24 @@
+{
+  "name": "pi2sem-ling-prog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HenriqueeVidal/pi2sem-Ling-Prog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HenriqueeVidal/pi2sem-Ling-Prog/issues"
+  },
+  "homepage": "https://github.com/HenriqueeVidal/pi2sem-Ling-Prog#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
