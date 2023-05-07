@@ -10,7 +10,7 @@ Atributos:
 
  */
 
-class Usuario{
+export class Usuario{
     constructor(id, nome, email, senha, cargo){
         this.id = id;
         this.nome = nome;
@@ -19,3 +19,12 @@ class Usuario{
         this.cargo = cargo;
     }
 }
+
+export const getAll = () => {
+    return dbUsuarios;
+}
+
+export const dbUsuarios = [
+    new Usuario(1, "João da Silva", "Joao@gmail.com", "123456", "Administrador"),
+    new Usuario(2, "Maria da Silva", "Maria@gmail.com", "senha123", "Tecnica")
+    ]

@@ -16,7 +16,7 @@ Atributos:
 
  */
 
-class OrdemDeServico{
+export class OrdemDeServico{
     constructor(id, cliente_id, produto_id, data_abertura, data_pronto, data_saida, status, diagnostico, solucao, anexos){
         this.id = id;
         this.cliente_id = cliente_id;
@@ -30,3 +30,12 @@ class OrdemDeServico{
         this.anexos = anexos;
     }
 }
+
+export const getAll =() => {
+    return dbOrdensDeServico;
+}
+
+export const dbOrdensDeServico = [
+    new OrdemDeServico(1, 1, 1, "2021-01-01", "2021-01-02", "2021-01-03", "aberta", "diagnostico", "solucao", "anexos"),
+    new OrdemDeServico(2, 2, 2, "2021-02-01", "2021-02-02", "2021-02-03", "em andamento", "diagnostico", "solucao", "anexos")
+]
