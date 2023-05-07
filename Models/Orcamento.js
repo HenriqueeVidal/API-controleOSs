@@ -9,7 +9,7 @@ Atributos
 •	Status (enviado, aprovado, recusado) - texto
  */
 
-class Orcamento{
+export class Orcamento{
     constructor(id, ordem_servico_id, valor_pecas, valor_mao_de_obra, status){
         this.id = id;
         this.ordem_servico_id = ordem_servico_id;
@@ -18,3 +18,12 @@ class Orcamento{
         this.status = status;
     }
 }
+
+export const getAll =() => {
+    return dbOrcamentos;
+}
+
+export const dbOrcamentos = [
+    new Orcamento(1, 1, 100, 50, "enviado"),
+    new Orcamento(2, 2, 200, 100, "aprovado"),
+    ]
