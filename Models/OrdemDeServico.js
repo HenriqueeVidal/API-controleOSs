@@ -13,7 +13,6 @@ Atributos:
 •	Diagnóstico/defeito/reclamação - texto
 •	Solução - texto
 •	Anexos - file
-
  */
 
 export class OrdemDeServico{

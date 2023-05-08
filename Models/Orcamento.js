@@ -9,8 +9,8 @@ Atributos
 •	Status (enviado, aprovado, recusado) - texto
  */
 
-export class Orcamento{
-    constructor(id, ordem_servico_id, valor_pecas, valor_mao_de_obra, status){
+export class Orcamento {
+    constructor(id, ordem_servico_id, valor_pecas, valor_mao_de_obra, status) {
         this.id = id;
         this.ordem_servico_id = ordem_servico_id;
         this.valor_pecas = valor_pecas;
@@ -19,11 +19,15 @@ export class Orcamento{
     }
 }
 
-export const getAll =() => {
+export const getAll = () => {
     return dbOrcamentos;
+}
+
+export const getById = (id) => {
+    return dbOrcamentos.find(Orcamento => Orcamento.id === parseInt(id))
 }
 
 export const dbOrcamentos = [
     new Orcamento(1, 1, 100, 50, "enviado"),
     new Orcamento(2, 2, 200, 100, "aprovado"),
-    ]
+]
