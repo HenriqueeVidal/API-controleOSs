@@ -38,12 +38,6 @@ export const getAll = () => {
     return dbClientes;
 }
 
-export const dbClientes = [
-    new Cliente(1, 123456789, "João da Silva", 123456789, "cliente@gmail.com", 123456789, "Rua dos Bobos", 0, "Casa", "Centro", "São Paulo", "SP"),
-        new Cliente(2, 123456789, "Maria da Silva", 123456789, "maria@gmail.com", 123456789, "Rua dos Bobos", 0, "Casa", "Centro", "São Paulo", "SP"),
-            ]
-
-
 export const getById = (id) => {
     return dbClientes.find(cliente => cliente.id === parseInt(id))
 }
@@ -63,7 +57,7 @@ export const create = (clienteData) => {
         clienteData.cidade,
         clienteData.uf
     )
-    dbClientes.push(newCliente)
+    dbClientes.push(newCliente) // Onde seria feita a inserção no BD, no caso está sendo feito no Array
     return newCliente
 }
 
@@ -82,3 +76,9 @@ export const remove = (id) => {
         dbClientes.splice(clienteIndex, 1)
     }
 }
+
+
+export const dbClientes = [
+    new Cliente(1, 123456789, "João da Silva", 123456789, "cliente@gmail.com", 123456789, "Rua dos Bobos", 0, "Casa", "Centro", "São Paulo", "SP"),
+    new Cliente(2, 123456789, "Maria da Silva", 123456789, "maria@gmail.com", 123456789, "Rua dos Bobos", 0, "Casa", "Centro", "São Paulo", "SP"),
+            ]
