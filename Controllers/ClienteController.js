@@ -10,12 +10,12 @@ class ClienteController {
     }
 
     static create(req, res) {
-        const newCliente = create(req.body)
+        const newCliente = create(req.body) // O que é body?
         res.status(201).json(newCliente)
     }
 
     static update(req, res) {
-        const updatedCliente = update(req.params.id, req.body)
+        const updatedCliente = update(req.params.id, req.body) // O que é body?
         res.json(updatedCliente)
     }
 
