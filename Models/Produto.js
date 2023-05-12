@@ -12,8 +12,8 @@ Atributos:
 •	Número_de_série - texto
  */
 
-export class Produto{
-    constructor(id, aparelho, descricao, versao, acessorios, marca, modelo, numeroDeSerie){
+export class Produto {
+    constructor(id, aparelho, descricao, versao, acessorios, marca, modelo, numeroDeSerie) {
         this.id = id;
         this.aparelho = aparelho;
         this.descricao = descricao;
@@ -29,7 +29,11 @@ export const getAll = () => {
     return dbProdutos;
 }
 
+export const getById = (id) => {
+    return dbProdutos.find(Produtos => dbProdutos.id === parseInt(id))
+}
+
 export const dbProdutos = [
     new Produto(1, "celular", "descricao", "versao", "acessorios", "marca", "modelo", "numeroDeSerie"),
-        new Produto(2, "celular", "descricao", "versao", "acessorios", "marca", "modelo", "numeroDeSerie"),
-    ]
+    new Produto(2, "celular", "descricao", "versao", "acessorios", "marca", "modelo", "numeroDeSerie"),
+]

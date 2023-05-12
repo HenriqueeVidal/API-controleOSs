@@ -15,8 +15,8 @@ Atributos:
 •	Anexos - file
  */
 
-export class OrdemDeServico{
-    constructor(id, cliente_id, produto_id, data_abertura, data_pronto, data_saida, status, diagnostico, solucao, anexos){
+export class OrdemDeServico {
+    constructor(id, cliente_id, produto_id, data_abertura, data_pronto, data_saida, status, diagnostico, solucao, anexos) {
         this.id = id;
         this.cliente_id = cliente_id;
         this.produto_id = produto_id;
@@ -30,8 +30,12 @@ export class OrdemDeServico{
     }
 }
 
-export const getAll =() => {
+export const getAll = () => {
     return dbOrdensDeServico;
+}
+
+export const getById = (id) => {
+    return dbOrdensDeServico.find(OrdemDeServico => dbOrdensDeServico.id === parseInt(id))
 }
 
 export const dbOrdensDeServico = [
