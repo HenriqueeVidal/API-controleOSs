@@ -2,7 +2,7 @@
   "name": "pi2sem-ling-prog",
   "version": "1.0.0",
   "description": "nothing",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/HenriqueeVidal/pi2sem-Ling-Prog.git"
   },
   "keywords": [],
-  "author": "Marcelo e Henrique",
+  "author": "Henrique e Marcelo",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/HenriqueeVidal/pi2sem-Ling-Prog/issues"
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/HenriqueeVidal/pi2sem-Ling-Prog#readme",
   "dependencies": {
     "express": "^4.18.2",
+    "node": "^20.1.0",
     "prompt-sync": "^4.2.0"
   },
   "devDependencies": {
