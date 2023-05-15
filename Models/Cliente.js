@@ -1,84 +1,75 @@
+// models/Cliente.js
 
-/*
-Cliente
-Descrição: Armazena informações sobre os clientes, como nome, telefone, e-mail e endereço.
-Atributos:
-•	Id - número
-•	CPF/CNPJ - número
-•	Nome - texto
-•	Telefone/celular - número
-•	E-mail - texto
-•	Cep – número
-•	Endereço - texto
-•	Número - número
-•	Complemento - texto
-•	Bairro - texto
-•	Cidade - texto
-•	UF - texto
- */
-
-export class Cliente{
-    constructor(id, cpfCnpj, nome, telefone, email, cep, endereco, numero, complemento, bairro, cidade, uf){
-        this.id = id;
-        this.cpfCnpj = cpfCnpj;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-        this.cep = cep;
-        this.endereco = endereco;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.uf = uf;
+// Class representing a Client
+export class Cliente {
+    // The constructor is a special method for creating and initializing an object created from a class.
+    constructor(id, cpf_cnpj, nome, telefone, celular, email, cep, endereco, numero, complemento, bairro, cidade, uf){
+        this.id = id
+        this.cpf_cnpj = cpf_cnpj
+        this.nome = nome
+        this.telefone = telefone
+        this.celular = celular
+        this.email = email
+        this.cep = cep
+        this.endereco = endereco
+        this.numero = numero
+        this.complemento = complemento
+        this.bairro = bairro
+        this.cidade = cidade
+        this.uf = uf
     }
 }
 
-export const getAll = () => {
-    return dbClientes;
+// Variable to store the next ID to be used when creating a new Client
+let idAtual = 2
+
+// Function to create a new Client
+export const create = (cliente) => {
+    idAtual++  // Increment the current ID
+    cliente.id = idAtual  // Assign the new ID to the Client
+    dbClientes.push(cliente)  // Add the new Client to the database
+    console.log("Client successfully registered!")
+    return cliente
 }
 
-export const getById = (id) => {
-    return dbClientes.find(cliente => cliente.id === parseInt(id))
+// Function to find a Client by its primary key
+export const findByPk = (id) => {
+    return dbClientes.find(cliente => cliente.id === id)
 }
 
-export const create = (clienteData) => {
-    const newCliente = new Cliente(
-        Math.max(...dbClientes.map(cliente => cliente.id)) + 1,
-        clienteData.cpfCnpj,
-        clienteData.nome,
-        clienteData.telefone,
-        clienteData.email,
-        clienteData.cep,
-        clienteData.endereco,
-        clienteData.numero,
-        clienteData.complemento,
-        clienteData.bairro,
-        clienteData.cidade,
-        clienteData.uf
-    )
-    dbClientes.push(newCliente) // Onde seria feita a inserção no BD, no caso está sendo feito no Array
-    return newCliente
+// Function to return all Clients
+export const findAll = () => {
+    return dbClientes
 }
 
-export const update = (id, updatedClienteData) => {
-    const clienteIndex = dbClientes.findIndex(cliente => cliente.id === parseInt(id))
-    if (clienteIndex !== -1) {
-        Object.assign(dbClientes[clienteIndex], updatedClienteData)
-        return dbClientes[clienteIndex]
+// Function to delete a Client
+export const destroy = (id) => {
+    const cliente = findByPk(id)
+    if(!cliente){
+        console.log("Client not found!")
+        return false
     }
-    return null
+    const index = dbClientes.indexOf(cliente)
+    dbClientes.splice(index,1)
+    console.log("Client successfully removed!")
+    return true
 }
 
-export const remove = (id) => {
-    const clienteIndex = dbClientes.findIndex(cliente => cliente.id === parseInt(id))
-    if (clienteIndex !== -1) {
-        dbClientes.splice(clienteIndex, 1)
+// Function to update a Client
+export const update = (id,clienteUpdate) => {
+    const cliente = findByPk(id)
+    if(!cliente) {
+        console.log("Client not found!")
+        return false
     }
+    const index = dbClientes.indexOf(cliente)
+    dbClientes[index] = clienteUpdate
+    console.log("Client successfully updated!")
+    return true
 }
 
-
+// Initial Clients database
 export const dbClientes = [
-    new Cliente(1, 123456789, "João da Silva", 123456789, "cliente@gmail.com", 123456789, "Rua dos Bobos", 0, "Casa", "Centro", "São Paulo", "SP"),
-    new Cliente(2, 123456789, "Maria da Silva", 123456789, "maria@gmail.com", 123456789, "Rua dos Bobos", 0, "Casa", "Centro", "São Paulo", "SP"),
-            ]
+    new Cliente(1, "12345678901", "Felipe", "11223344", "9988776655", "email@gmail.com", "12345678", "Rua Exemplo, 123", 123, "Apto 456", "Bairro", "Cidade", "UF"),
+    new Cliente(2, "10987654321", "Nome", "55667788", "1122334455", "meuemail@email.com", "87654321", "Avenida Teste, 456", 456, "Casa 789", "Bairro Teste", "Cidade Teste", "UF Teste")
+]
