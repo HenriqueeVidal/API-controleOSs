@@ -1,25 +1,26 @@
-// Importing necessary modules
-import express from 'express'
-import OrdemDeServicoController from '../Controllers/OrdemDeServicoController.js'
+// Importando os módulos necessários
+import express from 'express'; // Framework Express para criar aplicativos web em Node.js
+import OrdemDeServicoController from '../Controllers/OrdemDeServicoController.js'; // Controlador para o modelo OrdemDeServico
 
-// Creating a new router object from Express
-const OrdemDeServicoRouter = express.Router()
+// Criando um novo objeto de roteador do Express
+const OrdemDeServicoRouter = express.Router();
 
-// Defining the routes for the OrdemDeServico entity
-// GET request on '/ordensdeservico/' - retrieves all ordens de serviço
-OrdemDeServicoRouter.get('/', OrdemDeServicoController.list)
+// Definindo as rotas para a entidade OrdemDeServico
 
-// POST request on '/ordensdeservico/' - creates a new ordem de serviço
-OrdemDeServicoRouter.post('/', OrdemDeServicoController.createOrdemDeServico)
+// Rota GET em '/ordensdeservico/' - recupera todas as ordens de serviço
+OrdemDeServicoRouter.get('/', OrdemDeServicoController.list);
 
-// GET request on '/ordensdeservico/:id' - retrieves a ordem de serviço by its id
-OrdemDeServicoRouter.get('/:id', OrdemDeServicoController.getOrdemDeServicoById)
+// Rota POST em '/ordensdeservico/' - cria uma nova ordem de serviço
+OrdemDeServicoRouter.post('/', OrdemDeServicoController.createOrdemDeServico);
 
-// DELETE request on '/ordensdeservico/:id' - deletes a ordem de serviço by its id
-OrdemDeServicoRouter.delete('/:id', OrdemDeServicoController.destroyOrdemDeServico)
+// Rota GET em '/ordensdeservico/:id' - recupera uma ordem de serviço pelo seu id
+OrdemDeServicoRouter.get('/:id', OrdemDeServicoController.getOrdemDeServicoById);
 
-// PUT request on '/ordensdeservico/:id' - updates a ordem de serviço by its id
-OrdemDeServicoRouter.put('/:id', OrdemDeServicoController.updateOrdemDeServico)
+// Rota DELETE em '/ordensdeservico/:id' - exclui uma ordem de serviço pelo seu id
+OrdemDeServicoRouter.delete('/:id', OrdemDeServicoController.destroyOrdemDeServico);
 
-// Exporting the router to be used in other parts of the application
-export default OrdemDeServicoRouter
+// Rota PUT em '/ordensdeservico/:id' - atualiza uma ordem de serviço pelo seu id
+OrdemDeServicoRouter.put('/:id', OrdemDeServicoController.updateOrdemDeServico);
+
+// Exportando o roteador para ser usado em outras partes da aplicação
+export default OrdemDeServicoRouter;
