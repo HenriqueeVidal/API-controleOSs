@@ -20,7 +20,7 @@ CREATE INDEX idx_cliente_cpf_cnpj ON cliente (cpf_cnpj);
  */
 
 import { Sequelize } from "sequelize";
-import db from "../db.js";
+import db from "../DB.js";
 
 const Cliente = db.define('cliente', {
     id: {

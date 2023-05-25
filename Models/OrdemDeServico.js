@@ -17,7 +17,7 @@ CREATE TABLE ordem_servico (
  */
 
 import { Sequelize } from "sequelize";
-import db from "../db.js";
+import db from "../DB.js";
 
 const OrdemServico = db.define('ordem_servico', {
     id: {
