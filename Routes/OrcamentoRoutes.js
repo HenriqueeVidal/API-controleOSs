@@ -1,25 +1,26 @@
-// importing the necessaries modules
-import express from 'express'
-import OrcamentoController from '../Controllers/OrcamentoController.js'
+// Importando os módulos necessários
+import express from 'express'; // Framework Express para criar aplicativos web em Node.js
+import OrcamentoController from '../Controllers/OrcamentoController.js'; // Controlador para o modelo Orcamento
 
-// Creating a new router object from Express
-const OrcamentoRouter = express.Router()
+// Criando um novo objeto de roteador do Express
+const OrcamentoRouter = express.Router();
 
-// Defining the routes for the Orcamento entity
-// GET request on '/orcamento/' - retrieves all orcamentos
-OrcamentoRouter.get('/', OrcamentoController.list)
+// Definindo as rotas para a entidade Orcamento
 
-// POST request on '/orcamento/' - creates a new orcamento
-OrcamentoRouter.post('/', OrcamentoController.createOrcamento)
+// Rota GET em '/orcamento/' - recupera todos os orcamentos
+OrcamentoRouter.get('/', OrcamentoController.list);
 
-// GET request on '/orcamento/:id' - retrieves a orcamento by its id
-OrcamentoRouter.get('/:id', OrcamentoController.getOrcamentoById)
+// Rota POST em '/orcamento/' - cria um novo orcamento
+OrcamentoRouter.post('/', OrcamentoController.createOrcamento);
 
-// DELETE request on '/orcamento/:id' - deletes a orcamento by its id
-OrcamentoRouter.delete('/:id', OrcamentoController.destroyOrcamento)
+// Rota GET em '/orcamento/:id' - recupera um orcamento pelo seu id
+OrcamentoRouter.get('/:id', OrcamentoController.getOrcamentoById);
 
-// PUT request on '/orcamento/:id' - updates a orcamento by its id
-OrcamentoRouter.put('/:id', OrcamentoController.updateOrcamento)
+// Rota DELETE em '/orcamento/:id' - exclui um orcamento pelo seu id
+OrcamentoRouter.delete('/:id', OrcamentoController.destroyOrcamento);
 
-// Exporting the router to be used in other parts of the application
-export default OrcamentoRouter
+// Rota PUT em '/orcamento/:id' - atualiza um orcamento pelo seu id
+OrcamentoRouter.put('/:id', OrcamentoController.updateOrcamento);
+
+// Exportando o roteador para ser usado em outras partes da aplicação
+export default OrcamentoRouter;
