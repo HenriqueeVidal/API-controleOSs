@@ -12,28 +12,43 @@ Atributos:
 •	Número_de_série - texto
  */
 
-export class Produto {
-    constructor(id, aparelho, descricao, versao, acessorios, marca, modelo, numeroDeSerie) {
-        this.id = id;
-        this.aparelho = aparelho;
-        this.descricao = descricao;
-        this.versao = versao;
-        this.acessorios = acessorios;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.numeroDeSerie = numeroDeSerie;
+import { Sequelize } from "sequelize"
+import db from "../DB.js"
+
+const Produto = db.define('produto', {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    aparelho: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    descricao: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    versao: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    acessorios: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    marca: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    modelo: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    numeroDeSerie: {
+        type: Sequelize.INTEGER,
+        allowNull: false
     }
-}
+})
 
-export const getAll = () => {
-    return dbProdutos;
-}
-
-export const getById = (id) => {
-    return dbProdutos.find(Produtos => dbProdutos.id === parseInt(id))
-}
-
-export const dbProdutos = [
-    new Produto(1, "celular", "descricao", "versao", "acessorios", "marca", "modelo", "numeroDeSerie"),
-    new Produto(2, "celular", "descricao", "versao", "acessorios", "marca", "modelo", "numeroDeSerie"),
-]
+export default Produto
