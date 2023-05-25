@@ -39,7 +39,6 @@ const Orcamento = db.define('orcamento', {
     }
 });
 
-// Relacionamento entre Orcamento e OrdemServico
-Orcamento.belongsTo(OrdemServico, { foreignKey: 'ordem_servico_id' }); // Orcamento pertence a uma OrdemServico
+Orcamento.belongsTo(OrdemServico, { foreignKey: 'ordem_servico_id' });
 
 export default Orcamento;
