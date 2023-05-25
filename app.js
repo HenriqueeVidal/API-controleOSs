@@ -21,5 +21,7 @@ app.use('/produtos', ProdutoRouter)
 app.use('/usuarios', UsuarioRouter)
 
 // Telling the app to listen for requests on port 3000
-app.listen(3000, () => {console.log('API Rodando na porta 3000!')})
+app.listen(3000, () => { console.log('API Rodando na porta 3000!') })
 // Compare this snippet from pi2sem-Ling-Prog\index.js:
+
+//Usar o render para lançar como web service
