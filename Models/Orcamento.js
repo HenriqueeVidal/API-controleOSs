@@ -11,7 +11,7 @@ CREATE TABLE orcamento (
  */
 
 import { Sequelize } from "sequelize";
-import db from "../db.js";
+import db from "../DB.js";
 import OrdemServico from "./OrdemDeServico.js";
 
 // Definição do modelo Orcamento
