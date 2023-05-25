@@ -26,7 +26,7 @@ const Produto = db.define('produto', {
         allowNull: false
     },
     descricao: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: true
     },
     versao: {
@@ -34,7 +34,7 @@ const Produto = db.define('produto', {
         allowNull: true
     },
     acessorios: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: true
     },
     marca: {

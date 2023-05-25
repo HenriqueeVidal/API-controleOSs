@@ -3,7 +3,10 @@ import ProdutoController from '../Controllers/ProdutoController.js'
 
 const ProdutoRouter = express.Router()
 
-ProdutoRouter.get('/', ProdutoController.list)
-ProdutoRouter.get('/:id', ProdutoController.find)
+ProdutoRouter.get('/', ProdutoController.listProduto)
+ProdutoRouter.post('/:id', ProdutoController.createProduto)
+ProdutoRouter.get('/:id', ProdutoController.getProdutoById)
+ProdutoRouter.delete('/:id', ProdutoController.destroyProduto)
+ProdutoRouter.put('/:id', ProdutoController.updateProduto)
 
 export default ProdutoRouter
