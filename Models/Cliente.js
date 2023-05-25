@@ -1,75 +1,98 @@
-// models/Cliente.js
+/*
+-- Tabela Cliente
+CREATE TABLE cliente (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    cpf_cnpj VARCHAR(20) UNIQUE NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    telefone VARCHAR(15),
+    celular VARCHAR(15) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    cep VARCHAR(10) NOT NULL,
+    endereco VARCHAR(100) NOT NULL,
+    numero INT NOT NULL,
+    complemento VARCHAR(100),
+    bairro VARCHAR(100) NOT NULL,
+    cidade VARCHAR(100) NOT NULL,
+    uf CHAR(2) NOT NULL
+);
+CREATE INDEX idx_cliente_email ON cliente (email);
+CREATE INDEX idx_cliente_cpf_cnpj ON cliente (cpf_cnpj);
+ */
 
-// Class representing a Client
-export class Cliente {
-    // The constructor is a special method for creating and initializing an object created from a class.
-    constructor(id, cpf_cnpj, nome, telefone, celular, email, cep, endereco, numero, complemento, bairro, cidade, uf){
-        this.id = id
-        this.cpf_cnpj = cpf_cnpj
-        this.nome = nome
-        this.telefone = telefone
-        this.celular = celular
-        this.email = email
-        this.cep = cep
-        this.endereco = endereco
-        this.numero = numero
-        this.complemento = complemento
-        this.bairro = bairro
-        this.cidade = cidade
-        this.uf = uf
+import { Sequelize } from "sequelize";
+import db from "../db.js";
+
+// Definição do modelo Cliente
+const Cliente = db.define('cliente', {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    cpf_cnpj: {
+        type: Sequelize.STRING(20),
+        allowNull: false,
+        unique: true
+    },
+    nome: {
+        type: Sequelize.STRING(100),
+        allowNull: false
+    },
+    telefone: {
+        type: Sequelize.STRING(15)
+    },
+    celular: {
+        type: Sequelize.STRING(15),
+        allowNull: false
+    },
+    email: {
+        type: Sequelize.STRING(100),
+        allowNull: false,
+        unique: true
+    },
+    cep: {
+        type: Sequelize.STRING(10),
+        allowNull: false
+    },
+    endereco: {
+        type: Sequelize.STRING(100),
+        allowNull: false
+    },
+    numero: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    complemento: {
+        type: Sequelize.STRING(100)
+    },
+    bairro: {
+        type: Sequelize.STRING(100),
+        allowNull: false
+    },
+    cidade: {
+        type: Sequelize.STRING(100),
+        allowNull: false
+    },
+    uf: {
+        type: Sequelize.CHAR(2),
+        allowNull: false
     }
-}
+});
 
-// Variable to store the next ID to be used when creating a new Client
-let idAtual = 2
+// Definição dos índices do modelo Cliente
+Cliente.init({}, {
+    indexes: [
+        {
+            unique: true,
+            fields: ['email'],
+            name: 'idx_cliente_email'
+        },
+        {
+            unique: true,
+            fields: ['cpf_cnpj'],
+            name: 'idx_cliente_cpf_cnpj'
+        }
+    ]
+});
 
-// Function to create a new Client
-export const create = (cliente) => {
-    idAtual++  // Increment the current ID
-    cliente.id = idAtual  // Assign the new ID to the Client
-    dbClientes.push(cliente)  // Add the new Client to the database
-    console.log("Client successfully registered!")
-    return cliente
-}
-
-// Function to find a Client by its primary key
-export const findByPk = (id) => {
-    return dbClientes.find(cliente => cliente.id === id)
-}
-
-// Function to return all Clients
-export const findAll = () => {
-    return dbClientes
-}
-
-// Function to delete a Client
-export const destroy = (id) => {
-    const cliente = findByPk(id)
-    if(!cliente){
-        console.log("Client not found!")
-        return false
-    }
-    const index = dbClientes.indexOf(cliente)
-    dbClientes.splice(index,1)
-    console.log("Client successfully removed!")
-    return true
-}
-
-// Function to update a Client
-export const update = (id,clienteUpdate) => {
-    const cliente = findByPk(id)
-    if(!cliente) {
-        console.log("Client not found!")
-        return false
-    }
-    const index = dbClientes.indexOf(cliente)
-    dbClientes[index] = clienteUpdate
-    console.log("Client successfully updated!")
-    return true
-}
-
-// Initial Clients database
-export const dbClientes = [
-    new Cliente(1, "12345678901", "Felipe", "11223344", "9988776655", "email@gmail.com", "12345678", "Rua Exemplo, 123", 123, "Apto 456", "Bairro", "Cidade", "UF"),
-    new Cliente(2, "10987654321", "Nome", "55667788", "1122334455", "meuemail@email.com", "87654321", "Avenida Teste, 456", 456, "Casa 789", "Bairro Teste", "Cidade Teste", "UF Teste")
-]
+export default Cliente;

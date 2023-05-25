@@ -1,25 +1,26 @@
-// Importing necessary modules
-import express from 'express'
-import ClienteController from '../controllers/ClienteController.js'
+// Importando os módulos necessários
+import express from 'express'; // Framework Express para criar aplicativos web em Node.js
+import ClienteController from '../controllers/ClienteController.js'; // Controlador para o modelo Cliente
 
-// Creating a new router object from Express
-const ClienteRouter = express.Router()
+// Criando um novo objeto de roteador do Express
+const ClienteRouter = express.Router();
 
-// Defining the routes for the Cliente entity
-// GET request on '/clientes/' - retrieves all clientes
-ClienteRouter.get('/', ClienteController.list)
+// Definindo as rotas para a entidade Cliente
 
-// POST request on '/clientes/' - creates a new cliente
-ClienteRouter.post('/', ClienteController.createCliente)
+// Rota GET em '/clientes/' - recupera todos os clientes
+ClienteRouter.get('/', ClienteController.list);
 
-// GET request on '/clientes/:id' - retrieves a cliente by its id
-ClienteRouter.get('/:id', ClienteController.getClienteById)
+// Rota POST em '/clientes/' - cria um novo cliente
+ClienteRouter.post('/', ClienteController.createCliente);
 
-// DELETE request on '/clientes/:id' - deletes a cliente by its id
-ClienteRouter.delete('/:id', ClienteController.destroyCliente)
+// Rota GET em '/clientes/:id' - recupera um cliente pelo seu id
+ClienteRouter.get('/:id', ClienteController.getClienteById);
 
-// PUT request on '/clientes/:id' - updates a cliente by its id
-ClienteRouter.put('/:id', ClienteController.updateCliente)
+// Rota DELETE em '/clientes/:id' - exclui um cliente pelo seu id
+ClienteRouter.delete('/:id', ClienteController.destroyCliente);
 
-// Exporting the router to be used in other parts of the application
-export default ClienteRouter
+// Rota PUT em '/clientes/:id' - atualiza um cliente pelo seu id
+ClienteRouter.put('/:id', ClienteController.updateCliente);
+
+// Exportando o roteador para ser usado em outras partes da aplicação
+export default ClienteRouter;

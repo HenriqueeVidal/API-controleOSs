@@ -1,88 +1,144 @@
-// Import the necessary functions and classes from the models
-import { OrdemDeServico, create, destroy, findAll, findByPk, update } from "../models/OrdemDeServico.js"
+import OrdemDeServico from "../Models/OrdemDeServico.js";
+import Cliente from "../Models/Cliente.js";
+import Produto from "../Models/Produto.js";
+import Orcamento from "../Models/Orcamento.js";
 
-// Define a controller for handling operations related to 'OrdemDeServico'
 class OrdemDeServicoController {
-    // Handles a request to get a list of all 'OrdemDeServico' records
-    static list(req,res){
-        res.json(findAll())
+    /**
+     * Retorna a lista de ordens de serviço
+     * @param {*} req - Requisição HTTP
+     * @param {*} res - Resposta HTTP
+     */
+    static async list(req, res) {
+        const ordensDeServico = await OrdemDeServico.findAll({
+            include: [Cliente, Produto, Orcamento]
+        });
+        res.json(ordensDeServico);
     }
 
-    // Handles a request to get a 'OrdemDeServico' record by ID
-    static getOrdemDeServicoById(req,res){
-        const id = parseInt(req.params.id) // Parse the ID from the request parameters
-        const ordemDeServico = findByPk(id) // Find the 'OrdemDeServico' by primary key
-        if(!ordemDeServico){
-            res.status(404).json({error:"Não encontrado"}) // If no 'OrdemDeServico' is found, send a 404 response
-            return
+    /**
+     * Retorna uma ordem de serviço pelo ID
+     * @param {*} req - Requisição HTTP
+     * @param {*} res - Resposta HTTP
+     */
+    static async getOrdemDeServicoById(req, res) {
+        const id = parseInt(req.params.id);
+        const ordemDeServico = await OrdemDeServico.findByPk(id, {
+            include: [Cliente, Produto, Orcamento]
+        });
+        if (!ordemDeServico) {
+            res.status(404).json({ error: "Não encontrado" });
+            return;
         }
-
-        res.json(ordemDeServico) // If 'OrdemDeServico' is found, send it in the response
+        res.json(ordemDeServico);
     }
 
-    // Handles a request to delete a 'OrdemDeServico' record by ID
-    static destroyOrdemDeServico(req,res){
-        const id = parseInt(req.params.id) // Parse the ID from the request parameters
-        const ordemDeServico = findByPk(id) // Find the 'OrdemDeServico' by primary key
-        if(!ordemDeServico){
-            res.status(404).json({error:"Não encontrado"}) // If no 'OrdemDeServico' is found, send a 404 response
-            return
+    /**
+     * Remove uma ordem de serviço pelo ID
+     * @param {*} req - Requisição HTTP
+     * @param {*} res - Resposta HTTP
+     */
+    static async destroyOrdemDeServico(req, res) {
+        const id = parseInt(req.params.id);
+        const ordemDeServico = await OrdemDeServico.findByPk(id);
+        if (!ordemDeServico) {
+            res.status(404).json({ error: "Não encontrado" });
+            return;
         }
-        destroy(id) // Destroy the 'OrdemDeServico' record
-        res.json({message: "Removido com sucesso!"}) // Send a success message in the response
+        await OrdemDeServico.destroy({ where: { id: ordemDeServico.id } });
+        res.json({ message: "Deletado com sucesso" });
     }
 
-    // Handles a request to create a new 'OrdemDeServico' record
-    static createOrdemDeServico(req,res){
-        // Destructure the data from the request body
-        const {cliente_id, produto_id, data_abertura, data_pronto, data_saida, status, diagnostico_defeito_reclamacao, solucao, anexos} = req.body
+    /**
+     * Cria uma nova ordem de serviço
+     * @param {*} req - Requisição HTTP
+     * @param {*} res - Resposta HTTP
+     */
+    static async createOrdemDeServico(req, res) {
+        const {
+            cliente_id,
+            produto_id,
+            data_abertura,
+            data_pronto,
+            data_saida,
+            status,
+            diagnostico_defeito_reclamacao,
+            solucao,
+            anexos
+        } = req.body;
 
-        // Check if all necessary fields are present
-        if(!cliente_id || !produto_id || !data_abertura || !status || !diagnostico_defeito_reclamacao){
-            res.status(400).json({error: "Informe todos os campos!"}) // If not, send a 400 response
-            return
+        // Verifica se todos os campos necessários estão presentes
+        if (!cliente_id || !produto_id || !data_abertura || !status) {
+            res.status(400).json({ error: "Informe todos os campos necessários!" });
+            return;
         }
 
-        // Create a new 'OrdemDeServico' instance
-        const ordemDeServico = new OrdemDeServico(0, cliente_id, produto_id, data_abertura, data_pronto, data_saida, status, diagnostico_defeito_reclamacao, solucao, anexos)
-        const createdOrdemDeServico = create(ordemDeServico) // Add the new 'OrdemDeServico' to the database
-        res.status(201).json(createdOrdemDeServico) // Send the created 'OrdemDeServico' in the response
+        // Cria uma nova ordem de serviço
+        const createdOrdemDeServico = await OrdemDeServico.create({
+            cliente_id,
+            produto_id,
+            data_abertura,
+            data_pronto,
+            data_saida,
+            status,
+            diagnostico_defeito_reclamacao,
+            solucao,
+            anexos
+        });
+
+        res.status(201).json(createdOrdemDeServico);
     }
 
-    // Handles a request to update a 'OrdemDeServico' record by ID
-    static updateOrdemDeServico(req,res){
-        const id = parseInt(req.params.id) // Parse the ID from the request parameters
-        const ordemDeServico = findByPk(id) // Find the 'OrdemDeServico' by primary key
-        if(!ordemDeServico){
-            res.status(404).json({error:"Não encontrado"}) // If no 'OrdemDeServico' is found, send a 404 response
-            return
+    /**
+     * Atualiza uma ordem de serviço pelo ID
+     * @param {*} req - Requisição HTTP
+     * @param {*} res - Resposta HTTP
+     */
+    static async updateOrdemDeServico(req, res) {
+        const id = parseInt(req.params.id);
+        const ordemDeServico = await OrdemDeServico.findByPk(id);
+
+        if (!ordemDeServico) {
+            res.status(404).json({ error: "Não encontrado" });
+            return;
         }
 
-        // Destructure the data from the request body
-        const {cliente_id, produto_id, data_abertura, data_pronto, data_saida, status, diagnostico_defeito_reclamacao, solucao, anexos} = req.body
+        const {
+            cliente_id,
+            produto_id,
+            data_abertura,
+            data_pronto,
+            data_saida,
+            status,
+            diagnostico_defeito_reclamacao,
+            solucao,
+            anexos
+        } = req.body;
 
-        // Check if all necessary fields are present
-        if(!cliente_id || !produto_id || !data_abertura || !status || !diagnostico_defeito_reclamacao){
-            res.status(400).json({error: "Informe todos os campos!"}) // If not, send a 400 response
-            return
+        // Verifica se todos os campos necessários estão presentes
+        if (!cliente_id || !produto_id || !data_abertura || !status) {
+            res.status(400).json({ error: "Informe todos os campos necessários!" });
+            return;
         }
 
-        // Update the 'OrdemDeServico' record
-        ordemDeServico.cliente_id = cliente_id
-        ordemDeServico.produto_id = produto_id
-        ordemDeServico.data_abertura = data_abertura
-        ordemDeServico.data_pronto = data_pronto
-        ordemDeServico.data_saida = data_saida
-        ordemDeServico.status = status
-        ordemDeServico.diagnostico_defeito_reclamacao = diagnostico_defeito_reclamacao
-        ordemDeServico.solucao = solucao
-        ordemDeServico.anexos = anexos
+        // Atualiza a ordem de serviço
+        const updatedOrdemDeServico = await OrdemDeServico.update(
+            {
+                cliente_id,
+                produto_id,
+                data_abertura,
+                data_pronto,
+                data_saida,
+                status,
+                diagnostico_defeito_reclamacao,
+                solucao,
+                anexos
+            },
+            { where: { id: ordemDeServico.id } }
+        );
 
-        // Send the updated 'OrdemDeServico' record in the response
-        update(id, ordemDeServico)
-        res.json(ordemDeServico)
+        res.json(updatedOrdemDeServico);
     }
 }
 
-// Export the controller
-export default OrdemDeServicoController
+export default OrdemDeServicoController;
