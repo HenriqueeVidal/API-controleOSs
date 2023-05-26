@@ -78,19 +78,4 @@ const Cliente = db.define('cliente', {
     }
 });
 
-Cliente.init({}, {
-    indexes: [
-        {
-            unique: true,
-            fields: ['email'],
-            name: 'idx_cliente_email'
-        },
-        {
-            unique: true,
-            fields: ['cpf_cnpj'],
-            name: 'idx_cliente_cpf_cnpj'
-        }
-    ]
-});
-
 export default Cliente;

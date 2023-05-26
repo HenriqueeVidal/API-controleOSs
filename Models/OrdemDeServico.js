@@ -59,8 +59,4 @@ const OrdemServico = db.define('ordem_servico', {
     }
 });
 
-OrdemServico.belongsTo(Cliente, { foreignKey: 'cliente_id' });
-OrdemServico.belongsTo(Produto, { foreignKey: 'produto_id' });
-OrdemServico.hasOne(Orcamento, { foreignKey: 'ordem_servico_id' });
-
 export default OrdemServico;
