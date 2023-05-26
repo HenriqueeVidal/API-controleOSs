@@ -12,9 +12,7 @@ CREATE TABLE orcamento (
 
 import { Sequelize } from "sequelize";
 import db from "../DB.js";
-import OrdemServico from "./OrdemDeServico.js";
 
-// Definição do modelo Orcamento
 const Orcamento = db.define('orcamento', {
     id: {
         type: Sequelize.INTEGER,
@@ -38,7 +36,5 @@ const Orcamento = db.define('orcamento', {
         allowNull: false
     }
 });
-
-Orcamento.belongsTo(OrdemServico, { foreignKey: 'ordem_servico_id' });
 
 export default Orcamento;
