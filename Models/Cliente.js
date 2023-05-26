@@ -1,26 +1,5 @@
-/*
--- Tabela Cliente
-CREATE TABLE cliente (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    cpf_cnpj VARCHAR(20) UNIQUE NOT NULL,
-    nome VARCHAR(100) NOT NULL,
-    telefone VARCHAR(15),
-    celular VARCHAR(15) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    cep VARCHAR(10) NOT NULL,
-    endereco VARCHAR(100) NOT NULL,
-    numero INT NOT NULL,
-    complemento VARCHAR(100),
-    bairro VARCHAR(100) NOT NULL,
-    cidade VARCHAR(100) NOT NULL,
-    uf CHAR(2) NOT NULL
-);
-CREATE INDEX idx_cliente_email ON cliente (email);
-CREATE INDEX idx_cliente_cpf_cnpj ON cliente (cpf_cnpj);
- */
-
-import { Sequelize } from "sequelize";
-import db from "../DB.js";
+import { Sequelize } from "sequelize"
+import db from "../DB.js"
 
 const Cliente = db.define('cliente', {
     id: {
@@ -78,4 +57,4 @@ const Cliente = db.define('cliente', {
     }
 });
 
-export default Cliente;
+export default Cliente
