@@ -4,10 +4,13 @@ import OrcamentoRouter from "./Routes/OrcamentoRoutes.js";
 import OrdemDeServicoRouter from "./Routes/OrdemDeServicoRoutes.js";
 import ProdutoRouter from "./Routes/ProdutoRoutes.js";
 import UsuarioRouter from "./Routes/UsuarioRoutes.js";
+import db from './DB.js'
 
 const app = express()
 
 app.use(express.json())
+
+db.sync(() => "Banco de dados preparado!")
 
 app.use('/clientes', ClienteRouter)
 app.use('/orcamentos', OrcamentoRouter)

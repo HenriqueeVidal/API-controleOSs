@@ -1,23 +1,5 @@
-/*
--- Tabela Ordem de Serviço
-CREATE TABLE ordem_servico (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    cliente_id INTEGER NOT NULL,
-    produto_id INTEGER NOT NULL,
-    data_abertura DATE NOT NULL,
-    data_pronto DATE,
-    data_saida DATE,
-    status VARCHAR(20) NOT NULL DEFAULT 'aberta',
-    diagnostico_defeito_reclamacao TEXT,
-    solucao TEXT,
-    anexos BLOB,
-    FOREIGN KEY (cliente_id) REFERENCES cliente (id),
-    FOREIGN KEY (produto_id) REFERENCES produto (id)
-);
- */
-
-import { Sequelize } from "sequelize";
-import db from "../DB.js";
+import { Sequelize } from "sequelize"
+import db from "../DB.js"
 
 const OrdemServico = db.define('ordem_servico', {
     id: {
@@ -59,4 +41,4 @@ const OrdemServico = db.define('ordem_servico', {
     }
 });
 
-export default OrdemServico;
+export default OrdemServico
