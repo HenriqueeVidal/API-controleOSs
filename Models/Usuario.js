@@ -10,25 +10,32 @@ Atributos:
 
  */
 
-export class Usuario {
-    constructor(id, nome, email, senha, cargo) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.cargo = cargo;
+import { Sequelize } from "sequelize"
+import db from "../DB.js"
+
+const Usuario = db.define('usuario', {
+
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    nome: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    email: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    senha: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    cargo: {
+        type: Sequelize.STRING,
+        allowNull: false
     }
-}
+})
 
-export const getAll = () => {
-    return dbUsuarios;
-}
-
-export const getById = (id) => {
-    return dbUsuarios.find(Usuario => dbUsuarios.id === parseInt(id))
-}
-
-export const dbUsuarios = [
-    new Usuario(1, "João da Silva", "Joao@gmail.com", "123456", "Administrador"),
-    new Usuario(2, "Maria da Silva", "Maria@gmail.com", "senha123", "Tecnica")
-]
+export default Usuario

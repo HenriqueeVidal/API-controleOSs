@@ -1,13 +1,56 @@
-import { getAll, getById } from "../Models/Usuario.js"
+import Usuario from "../Models/Usuario.js"
 
 class UsuarioController {
-    static list(req, res) {
-        res.json(getAll())
+    static async listUsuario(req, res) {
+        const usuario = await Usuario.findAll()
+        res.json(usuario)
     }
 
-    static find(req, res) {
-        res.json(getById(req.params.id))
+    static async getUsuarioById(req, res) {
+        const id = parseInt(req.params.id)
+        const usuario = await Usuario.findByPk(id)
+        if (!usuario) {
+            res.status(404).json({ error: "Não encontrado" })
+            return
+        }
+        res.json(usuario)
+    }
+
+    static async createUsuario(req, res) {
+        const { id, nome, email, senha, cargo } = req.body
+        if (!id || !nome || !email || !senha || !cargo) {
+            res.status(400).json({ error: "Informe todos os campos" })
+            return
+        }
+        const createdUsuario = await Usuario.create({ id, nome, email, senha, cargo })
+        res.status(201).json(createdUsuario)
+    }
+
+    static async updateUsuario(req, res) {
+        const id = parseint(req.params.id)
+        const usuario = await Usuario.findByPk(id)
+        if (!usuario) {
+            res.status(404).json({ error: "Não encontrado" })
+            return
+        }
+        const { nome, email, senha, cargo } = req.body
+        if (!nome || !email || !senha || !cargo) {
+            res.status(400).json({ error: "Informe todos os campos" })
+            return
+        }
+        const updatedUsuario = await Usuario.update({ nome, email, senha, cargo }, { where: { id: usuario.id } })
+        res.json(updateUsuario)
+    }
+
+    static async destroyUsuario(req, res) {
+        const id = parseInt(req.params.id)
+        const usuario = findByPk(id)
+        if (!contato) {
+            res.status(404).json({ error: "Usuário não encontrado" })
+            return
+        }
+        await Usuario.destroy({ where: { id: usuario.id } })
+        res.json({ message: "Removido com sucesso" })
     }
 }
-
 export default UsuarioController

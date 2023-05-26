@@ -11,10 +11,8 @@ CREATE TABLE orcamento (
  */
 
 import { Sequelize } from "sequelize";
-import db from "../db.js";
-import OrdemServico from "./OrdemDeServico.js";
+import db from "../DB.js";
 
-// Definição do modelo Orcamento
 const Orcamento = db.define('orcamento', {
     id: {
         type: Sequelize.INTEGER,
@@ -38,8 +36,5 @@ const Orcamento = db.define('orcamento', {
         allowNull: false
     }
 });
-
-// Relacionamento entre Orcamento e OrdemServico
-Orcamento.belongsTo(OrdemServico, { foreignKey: 'ordem_servico_id' }); // Orcamento pertence a uma OrdemServico
 
 export default Orcamento;
