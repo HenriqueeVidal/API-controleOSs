@@ -17,9 +17,8 @@ CREATE TABLE ordem_servico (
  */
 
 import { Sequelize } from "sequelize";
-import db from "../db.js";
+import db from "../DB.js";
 
-// Definição do modelo OrdemServico
 const OrdemServico = db.define('ordem_servico', {
     id: {
         type: Sequelize.INTEGER,
@@ -59,10 +58,5 @@ const OrdemServico = db.define('ordem_servico', {
         type: Sequelize.BLOB
     }
 });
-
-// Relacionamentos entre OrdemServico, Cliente, Produto e Orcamento
-OrdemServico.belongsTo(Cliente, { foreignKey: 'cliente_id' }); // OrdemServico pertence a um Cliente
-OrdemServico.belongsTo(Produto, { foreignKey: 'produto_id' }); // OrdemServico pertence a um Produto
-OrdemServico.hasOne(Orcamento, { foreignKey: 'ordem_servico_id' }); // OrdemServico tem um Orcamento
 
 export default OrdemServico;

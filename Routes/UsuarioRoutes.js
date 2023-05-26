@@ -4,7 +4,10 @@ import UsuarioController from '../Controllers/UsuarioController.js'
 
 const UsuarioRouter = express.Router()
 
-UsuarioRouter.get('/', UsuarioController.list)
-UsuarioRouter.get('/:id', UsuarioController.find)
+UsuarioRouter.get('/', UsuarioController.listUsuario)
+UsuarioRouter.post('/:id', UsuarioController.createUsuario)
+UsuarioRouter.get('/:id', UsuarioController.getUsuarioById)
+UsuarioRouter.delete('/:id', UsuarioController.destroyUsuario)
+UsuarioRouter.put('/:id', UsuarioController.updateUsuario)
 
 export default UsuarioRouter

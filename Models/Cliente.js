@@ -20,9 +20,8 @@ CREATE INDEX idx_cliente_cpf_cnpj ON cliente (cpf_cnpj);
  */
 
 import { Sequelize } from "sequelize";
-import db from "../db.js";
+import db from "../DB.js";
 
-// Definição do modelo Cliente
 const Cliente = db.define('cliente', {
     id: {
         type: Sequelize.INTEGER,
@@ -77,22 +76,6 @@ const Cliente = db.define('cliente', {
         type: Sequelize.CHAR(2),
         allowNull: false
     }
-});
-
-// Definição dos índices do modelo Cliente
-Cliente.init({}, {
-    indexes: [
-        {
-            unique: true,
-            fields: ['email'],
-            name: 'idx_cliente_email'
-        },
-        {
-            unique: true,
-            fields: ['cpf_cnpj'],
-            name: 'idx_cliente_cpf_cnpj'
-        }
-    ]
 });
 
 export default Cliente;
