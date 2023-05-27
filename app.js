@@ -5,10 +5,12 @@ import OrdemDeServicoRouter from "./Routes/OrdemDeServicoRoutes.js";
 import ProdutoRouter from "./Routes/ProdutoRoutes.js";
 import UsuarioRouter from "./Routes/UsuarioRoutes.js";
 import db from './DB.js'
+import cors from 'cors'
 
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 db.sync(() => "Banco de dados preparado!")
 
