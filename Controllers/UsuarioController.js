@@ -17,12 +17,12 @@ class UsuarioController {
     }
 
     static async createUsuario(req, res) {
-        const { id, nome, email, senha, cargo } = req.body
+        const {nome, email, senha, cargo } = req.body
         if (!id || !nome || !email || !senha || !cargo) {
             res.status(400).json({ error: "Informe todos os campos" })
             return
         }
-        const createdUsuario = await Usuario.create({ id, nome, email, senha, cargo })
+        const createdUsuario = await Usuario.create({nome, email, senha, cargo })
         res.status(201).json(createdUsuario)
     }
 

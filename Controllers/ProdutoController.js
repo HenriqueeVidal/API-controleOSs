@@ -1,7 +1,6 @@
 import Produto from "../Models/Produto.js"
 
 class ProdutoController {
-
     static async listProduto(req, res) {
         const produto = await Produto.findAll()
         res.json(produto)
@@ -31,7 +30,7 @@ class ProdutoController {
             res.status(404).json({ error: "Informe todos os campos" })
             return
         }
-        const createdProduto = await Produto.create({ id, aparelho, descricao, versao, acessorios, marca, modelo, numeroDeSerie })
+        const createdProduto = await Produto.create({aparelho, descricao, versao, acessorios, marca, modelo, numeroDeSerie })
         res.status(201).json(createdProduto)
     }
 
@@ -45,7 +44,7 @@ class ProdutoController {
         if (!id || !aparelho || !descricao || !versao || !acessorios || !marca || !modelo || !numeroDeSerie) {
             res.status(404).json({ error: "Informe todos os campos" })
         }
-        const updatedProduto = await Produto.update({ id, aparelho, descricao, versao, acessorios, marca, modelo, numeroDeSerie }, { where: { id: produto.id } })
+        const updatedProduto = await Produto.update({aparelho, descricao, versao, acessorios, marca, modelo, numeroDeSerie }, { where: { id: produto.id } })
     }
 
     static async destroyProduto(req, res) {

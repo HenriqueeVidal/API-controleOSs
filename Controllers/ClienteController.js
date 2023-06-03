@@ -16,17 +16,6 @@ class ClienteController {
         res.json(cliente);
     }
 
-    static async destroyCliente(req, res) {
-        const id = parseInt(req.params.id);
-        const cliente = await Cliente.findByPk(id);
-        if (!cliente) {
-            res.status(404).json({ error: "Não encontrado" });
-            return;
-        }
-        await Cliente.destroy({ where: { id: cliente.id } });
-        res.json({ message: "Deletado com sucesso" });
-    }
-
     static async createCliente(req, res) {
         const {
             cpf_cnpj,
@@ -64,6 +53,17 @@ class ClienteController {
         });
 
         res.status(201).json(createdCliente);
+    }
+
+    static async destroyCliente(req, res) {
+        const id = parseInt(req.params.id);
+        const cliente = await Cliente.findByPk(id);
+        if (!cliente) {
+            res.status(404).json({ error: "Não encontrado" });
+            return;
+        }
+        await Cliente.destroy({ where: { id: cliente.id } });
+        res.json({ message: "Deletado com sucesso" });
     }
 
     static async updateCliente(req, res) {
