@@ -45,7 +45,7 @@ class OrdemDeServicoController {
             diagnostico_defeito_reclamacao,
             solucao,
             anexos
-        } = req.body;
+        } = req.body
 
         if (!cliente_id || !produto_id || !data_abertura || !status) {
             res.status(400).json({ error: "Informe todos os campos necessários!" });

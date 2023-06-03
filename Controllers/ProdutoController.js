@@ -18,7 +18,16 @@ class ProdutoController {
     }
 
     static async createProduto(req, res) {
-        if (!id || !aparelho || !descricao || !versao || !acessorios || !marca || !modelo || !numeroDeSerie) {
+        const {
+            aparelho,
+            descricao,
+            versao,
+            acessorios,
+            marca,
+            modelo,
+            numeroDeSerie,
+        } = req.body
+        if (!aparelho || !descricao || !versao || !acessorios || !marca || !modelo || !numeroDeSerie) {
             res.status(404).json({ error: "Informe todos os campos" })
             return
         }
