@@ -44,7 +44,7 @@ class UsuarioController {
 
     static async destroyUsuario(req, res) {
         const id = parseInt(req.params.id)
-        const usuario = findByPk(id)
+        const usuario = await Usuario.findByPk(id)
         if (!contato) {
             res.status(404).json({ error: "Usuário não encontrado" })
             return
