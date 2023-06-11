@@ -12,7 +12,6 @@ class OrdemDeServicoController {
     static async getOrdemDeServicoById(req, res) {
         const id = parseInt(req.params.id);
         const ordemDeServico = await OrdemDeServico.findByPk(id, {
-            include: [Cliente, Produto, Orcamento]
         });
         if (!ordemDeServico) {
             res.status(404).json({ error: "Não encontrado" });
