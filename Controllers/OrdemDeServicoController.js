@@ -5,10 +5,8 @@ import Orcamento from "../Models/Orcamento.js";
 
 class OrdemDeServicoController {
     static async list(req, res) {
-        const ordensDeServico = await OrdemDeServico.findAll({
-            include: [Cliente, Produto, Orcamento]
-        });
-        res.json(ordensDeServico);
+        const ordensDeServico = await OrdemDeServico.findAll()
+        res.json(ordensDeServico)
     }
 
     static async getOrdemDeServicoById(req, res) {

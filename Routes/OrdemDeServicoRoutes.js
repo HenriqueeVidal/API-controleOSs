@@ -8,4 +8,5 @@ OrdemDeServicoRouter.post('/', OrdemDeServicoController.createOrdemDeServico);
 OrdemDeServicoRouter.get('/:id', OrdemDeServicoController.getOrdemDeServicoById);
 OrdemDeServicoRouter.delete('/:id', OrdemDeServicoController.destroyOrdemDeServico);
 OrdemDeServicoRouter.put('/:id', OrdemDeServicoController.updateOrdemDeServico);
+
 export default OrdemDeServicoRouter;
