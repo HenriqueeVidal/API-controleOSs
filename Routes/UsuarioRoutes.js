@@ -5,7 +5,7 @@ import UsuarioController from '../Controllers/UsuarioController.js'
 const UsuarioRouter = express.Router()
 
 UsuarioRouter.get('/', UsuarioController.listUsuario)
-UsuarioRouter.post('/:id', UsuarioController.createUsuario)
+UsuarioRouter.post('/', UsuarioController.createUsuario)
 UsuarioRouter.get('/:id', UsuarioController.getUsuarioById)
 UsuarioRouter.delete('/:id', UsuarioController.destroyUsuario)
 UsuarioRouter.put('/:id', UsuarioController.updateUsuario)

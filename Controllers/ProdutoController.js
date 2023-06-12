@@ -36,7 +36,7 @@ class ProdutoController {
 
     static async updateProduto(req, res) {
         const id = parseInt(req.params.id)
-        const produto = Produto.findByPk(id)
+        const produto = await Produto.findByPk(id)
         if (!produto) {
             res.status(404).json({ error: "Não encontrado" })
             return
@@ -45,6 +45,7 @@ class ProdutoController {
             res.status(404).json({ error: "Informe todos os campos" })
         }
         const updatedProduto = await Produto.update({aparelho, descricao, versao, acessorios, marca, modelo, numeroDeSerie }, { where: { id: produto.id } })
+        res.json(updatedProduto)
     }
 
     static async destroyProduto(req, res) {

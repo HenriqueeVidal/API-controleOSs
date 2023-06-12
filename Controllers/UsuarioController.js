@@ -18,7 +18,7 @@ class UsuarioController {
 
     static async createUsuario(req, res) {
         const {nome, email, senha, cargo } = req.body
-        if (!id || !nome || !email || !senha || !cargo) {
+        if (!nome || !email || !senha || !cargo) {
             res.status(400).json({ error: "Informe todos os campos" })
             return
         }
@@ -27,7 +27,7 @@ class UsuarioController {
     }
 
     static async updateUsuario(req, res) {
-        const id = parseint(req.params.id)
+        const id = parseInt(req.params.id)
         const usuario = await Usuario.findByPk(id)
         if (!usuario) {
             res.status(404).json({ error: "Não encontrado" })
@@ -39,13 +39,13 @@ class UsuarioController {
             return
         }
         const updatedUsuario = await Usuario.update({ nome, email, senha, cargo }, { where: { id: usuario.id } })
-        res.json(updateUsuario)
+        res.json(updatedUsuario)
     }
 
     static async destroyUsuario(req, res) {
         const id = parseInt(req.params.id)
         const usuario = await Usuario.findByPk(id)
-        if (!contato) {
+        if (!usuario) {
             res.status(404).json({ error: "Usuário não encontrado" })
             return
         }
